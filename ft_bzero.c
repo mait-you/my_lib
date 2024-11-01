@@ -6,11 +6,7 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 17:18:51 by mait-you          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/10/25 09:26:14 by mait-you         ###   ########.fr       */
-=======
 /*   Updated: 2024/10/30 14:43:42 by mait-you         ###   ########.fr       */
->>>>>>> Day 11
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +16,6 @@ void	ft_bzero(void *s, size_t n)
 {
 	unsigned char	*ptr;
 
-<<<<<<< HEAD
-	if (!s)
-		return ;
-=======
->>>>>>> Day 11
 	ptr = (unsigned char *)s;
 	while (n--)
 		*ptr++ = 0;

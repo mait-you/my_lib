@@ -6,33 +6,21 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 12:22:05 by mait-you          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/10/25 09:56:43 by mait-you         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#ifndef LIBFT_H
-=======
 /*   Updated: 2024/10/31 11:15:39 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H 
->>>>>>> Day 11
 # define LIBFT_H
 
 # include <unistd.h>
 # include <stdlib.h>
-<<<<<<< HEAD
-// # include <stdio.h>
-=======
 
 typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
 }					t_list;
->>>>>>> Day 11
 
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
@@ -63,8 +51,6 @@ char	*ft_strtrim(char const *s1, char const *set);
 char	**ft_split(char const *s, char c);
 char	*ft_itoa(int n);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
-<<<<<<< HEAD
-=======
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
@@ -79,6 +65,5 @@ void	ft_lstdelone(t_list *lst, void (*del)(void*));
 void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
->>>>>>> Day 11
 
 #endif
