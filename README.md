@@ -1,1 +1,2 @@
-# _LIBFT
+# LIBFT
+LIBFT
