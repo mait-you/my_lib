@@ -6,7 +6,7 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 08:58:35 by mait-you          #+#    #+#             */
-/*   Updated: 2024/11/01 11:23:12 by mait-you         ###   ########.fr       */
+/*   Updated: 2024/11/02 14:12:19 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,6 @@ char	**ft_split(char const *s, char c)
 		*(ptr + i++) = ft_substr(s, 0, len);
 		s += len;
 	}
-	*(ptr + i) = NULL;
+	*(ptr + --i) = NULL;
 	return (ptr);
 }

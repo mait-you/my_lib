@@ -6,7 +6,7 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 11:23:02 by mait-you          #+#    #+#             */
-/*   Updated: 2024/10/23 11:49:51 by mait-you         ###   ########.fr       */
+/*   Updated: 2024/11/02 14:17:29 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,7 @@
 
 int	ft_toupper(int c)
 {
-	unsigned char	cc;
-
-	cc = (unsigned char)c;
-	if (cc >= 'a' && cc <= 'z')
-		return (cc - ('a' - 'A'));
-	return (cc);
+	if (c >= 'a' && c <= 'z')
+		return (c - ('a' - 'A'));
+	return (c);
 }
