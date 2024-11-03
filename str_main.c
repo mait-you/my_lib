@@ -135,16 +135,16 @@ int main(void)
 	// printf("%s\n", ft_det);
 
 	// ===> ft_strlcat
-	// char src[] = "++";
+	// char src[] = "pqrs";
 
-	// char det[10] = "10234";
+	// char det[] = "abcdefghi";
 
-	// printf("%lu\n", strlcat(det, src, 8));
+	// printf("%lu\n", strlcat("pqrs", "abcdefghi", 13));
 	// printf("%s\n", det);
 
-	// char ft_det[10] = "10234";
+	// char ft_det[] = "abcdefghi";
 
-	// printf("%lu\n", ft_strlcat(ft_det, src, 8));
+	// printf("%lu\n", ft_strlcat("pqrs", "abcdefghi", 13));
 	// printf("%s\n", ft_det);
 
 	// ===> ft_toupper
@@ -162,11 +162,11 @@ int main(void)
 	// printf("%c\n", ft_tolower(ft_c));
 
 	// ===> ft_strchr
-	// const char *str = "Hello, World!";
-    //     printf("%s\n", strchr(str, 'l'));
+	// const char *str = "teste";
+    //     printf("%s\n", strchr(str, '\0'));
 
-	// const char *ft_str = "Hello, World!";
-	// printf("%s\n", ft_strchr(ft_str, 'l'));
+	// const char *ft_str = "teste";
+	// printf("%s\n", ft_strchr(ft_str, '\0'));
 	// ===> ft_strrchr
 	// const char *str = "Hello!, World!";
     //     printf("%s\n", strrchr(str, 0));

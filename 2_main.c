@@ -18,6 +18,28 @@ void to_upper_even(unsigned int i, char *c)
         *c = (char)ft_toupper(*c);
 }
 
+static int	count_words(char const *s, char c)
+{
+	int	count;
+	int	key;
+
+	count = 0;
+	key = 1;
+	while (*s)
+	{
+		if (*s != c && key)
+		{
+			count++;
+			key = !key;
+		}
+		if (*s == c && !key)
+			key = !key;
+		s++;
+	}
+	return (count);
+}
+
+
 int main(void)
 {
 	// ===> ft_substr
@@ -49,17 +71,17 @@ int main(void)
     // printf("%s\n", trim);
     // free(trim);
 	// ===> ft_split
-	// char *s = NULL;
-	// char **split;
+	char *s = "hello!";
+	char **split;
 
-	// split = ft_split(s, '_');
-	// int i = 0;
-	// while (i < 4)
-	// 	printf("%s\n", split[i++]);
-	// i = 0;
-	// while (i < 4)
-	// 	free(split[i++]);
-	// free(split);
+	split = ft_split(s, ' ');
+	int i = 0;
+	while (i < count_words(s, ' ') + 1)
+		printf("%s\n", split[i++]);
+	i = 0;
+	while (i < count_words(s, ' ') + 1)
+		free(split[i++]);
+	free(split);
 
 	// ===> ft_itoa
 	// int x = 1;

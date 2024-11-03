@@ -6,7 +6,7 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 18:17:14 by mait-you          #+#    #+#             */
-/*   Updated: 2024/11/01 11:26:35 by mait-you         ###   ########.fr       */
+/*   Updated: 2024/11/03 17:22:41 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ static int	n_len(long int n)
 {
 	int	l;
 
-	l = 1;
-	if (n < 0)
+	l = 0;
+	if (n <= 0)
 	{
 		n = -n;
 		l++;
 	}
-	while (n > 1)
+	while (n > 0)
 	{
 		n /= 10;
 		l++;
@@ -30,7 +30,7 @@ static int	n_len(long int n)
 	return (l);
 }
 
-static void	ft_putnb(char *s, int n)
+static void	ft_putnb(char *s, long int n)
 {
 	if (n > 9)
 		ft_putnb(s - 1, n / 10);
@@ -54,6 +54,6 @@ char	*ft_itoa(int n)
 		nb = -nb;
 	}
 	ft_putnb(str + len - 1, nb);
-	*(str + len) = 0;
+	str[len] = '\0';
 	return (str);
 }

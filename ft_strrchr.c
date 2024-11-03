@@ -6,7 +6,7 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 14:00:34 by mait-you          #+#    #+#             */
-/*   Updated: 2024/11/01 12:44:02 by mait-you         ###   ########.fr       */
+/*   Updated: 2024/11/03 14:24:11 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*ft_strrchr(const char *s, int c)
 			res = (char *)s;
 		s++;
 	}
-	if (*s == c)
+	if (cc == '\0')
 		res = (char *)s;
 	return (res);
 }

@@ -1,4 +1,4 @@
-CC					= gcc
+CC					= cc
 C_FLAGS				= -Wall -Wextra -Werror
 LIBC_FILES			= ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c \
 	ft_strlen.c ft_memset.c ft_bzero.c ft_memcpy.c ft_memmove.c \
@@ -25,9 +25,9 @@ BLUE		= \033[1;34m
 RESIT		= \033[0m
 UP			= \033[F
 
-all: libc
+all: $(NAME)
 
-libc: $(LIBC_OBJS)
+$(NAME): $(LIBC_OBJS)
 	@echo "$(BLUE)Make libf wiht LIBC_FILES & ADDITIONAL_FILES$(RESIT)"
 	@$(AR) $(NAME) $(LIBC_OBJS)
 
@@ -53,4 +53,3 @@ main:
 	@clear
 	@echo "$(BLUE)Meake a.out File$(RESIT)"
 	@$(CC) $(C_FLAGS) -L. -lft 2_main.c
-
