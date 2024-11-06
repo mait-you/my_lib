@@ -6,7 +6,7 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 11:48:49 by mait-you          #+#    #+#             */
-/*   Updated: 2024/11/01 12:36:13 by mait-you         ###   ########.fr       */
+/*   Updated: 2024/11/04 20:24:19 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	ft_putendl_fd(char *s, int fd)
 {
+	if (!s)
+		return;
 	if (fd == -1)
 		return ;
 	while (*s)
