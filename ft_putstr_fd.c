@@ -6,7 +6,7 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 11:46:27 by mait-you          #+#    #+#             */
-/*   Updated: 2024/11/04 20:23:56 by mait-you         ###   ########.fr       */
+/*   Updated: 2024/11/08 19:30:04 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_putstr_fd(char *s, int fd)
 {
 	if (!s)
-		return;
+		return ;
 	if (fd == -1)
 		return ;
 	while (*s)
