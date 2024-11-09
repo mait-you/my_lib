@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front_bonus.c                            :+:      :+:    :+:   */
+/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/25 19:23:55 by mait-you          #+#    #+#             */
-/*   Updated: 2024/11/08 18:23:36 by mait-you         ###   ########.fr       */
+/*   Created: 2024/10/25 17:48:40 by mait-you          #+#    #+#             */
+/*   Updated: 2024/11/08 18:17:42 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../libft.h"
 
-void	ft_lstadd_front(t_list **lst, t_list *new)
+t_list	*ft_lstnew(void *content)
 {
-	if (!new)
+	t_list	*new_list;
+
+	if (!content)
 		return (NULL);
-	new->next = *lst;
-	*lst = new;
+	new_list = (t_list *)ft_calloc(1, sizeof(t_list));
+	if (!new_list)
+		return (NULL);
+	new_list->content = content;
+	new_list->next = NULL;
+	return (new_list);
 }

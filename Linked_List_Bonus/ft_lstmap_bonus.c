@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../libft.h"
 
 static t_list	*w_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {

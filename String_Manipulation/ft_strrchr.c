@@ -10,17 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../libft.h"
 
 char	*ft_strrchr(const char *s, int c)
 {
-	unsigned int	i;
 	char			*res;
 	char			cc;
 
 	cc = (char) c;
 	res = NULL;
-	i = 0;
 	while (*s)
 	{
 		if (*s == cc)
