@@ -96,8 +96,8 @@ To use libft in your project, include it as follows:
 - **`ft_itoa`**: Convert an integer to a string.
 - **`ft_strmapi`**: Apply a function to each character of a string and return a new string.
 - **`ft_striteri`**: Apply a function to each character of a string with its index.
-- **`ft_atoi`**:
-- **`ft_split`**:
+- **`ft_atoi`**: Convert a string representing a number into an integer.
+- **`ft_split`**:  Split a string into parts based on a specified delimiter.
   
 ### Output Functions
 
