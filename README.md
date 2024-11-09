@@ -131,5 +131,3 @@ Contributions are welcome! If you wish to contribute:
 Contributions can include code optimizations, new utility functions, bug fixes, and documentation improvements.
 
 ---
-
-This `README.md` provides a comprehensive and user-friendly overview of your `libft` project.
