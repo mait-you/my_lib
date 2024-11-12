@@ -12,7 +12,7 @@
 
 #include "../libft.h"
 
-static int	overflow_handle(unsigned long r, int s, const char *str)
+static int	overflow_handle(long r, int s, const char *str)
 {
 	if (r > (9223372036854775807 / 10) || (r == (9223372036854775807 / 10) \
 		&& (*str - '0') > (9223372036854775807 % 10)))
@@ -28,7 +28,7 @@ int	ft_atoi(const char *str)
 {
 	int				overflow_check;
 	int				i;
-	unsigned long	r;
+	long			r;
 	int				s;
 
 	i = 0;
@@ -47,7 +47,7 @@ int	ft_atoi(const char *str)
 		overflow_check = overflow_handle(r, s, &str[i]);
 		if (overflow_check != 1)
 			return (overflow_check);
-		r = r * 10 + str[i] - '0';
+		r = r * 10 + (str[i] - '0');
 		i++;
 	}
 	return ((int)(s * r));

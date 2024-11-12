@@ -18,7 +18,6 @@ void	ft_putendl_fd(char *s, int fd)
 		return ;
 	if (fd == -1)
 		return ;
-	while (*s)
-		ft_putchar_fd(*s++, fd);
+	ft_putstr_fd(s, fd);
 	ft_putchar_fd('\n', fd);
 }

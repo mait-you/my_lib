@@ -29,10 +29,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 	int		s_len;
 	int		i;
 
-	if (!set)
-		return (ft_strdup(s1));
-	if (!s1)
-		return (ft_strdup(""));
+	if (!set || !s1)
+		return (NULL);
 	while (trim(s1, set))
 		s1++;
 	s_len = ft_strlen(s1);

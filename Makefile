@@ -129,7 +129,6 @@ linkedList: $(LINKED_LIST_OBJ)
 %.o: %.c libft.h
 	@$(CC) $(C_FLAGS) -c $< -o $@
 	@echo "$(BLUE)$(B)Make: $(RESET)$(I)$(GRAYL)$@$(RESET)"
-#	@echo "$(BLUE)Building $(GRAYL)Object File: $(CYAN)$@$(RESET)"
 
 
 clean:
@@ -144,4 +143,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: clean fclean re
+.PHONY: clean
