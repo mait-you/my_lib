@@ -1,6 +1,6 @@
 # LIBFT
 
-This project is part of the 42 curriculum and involves recreating essential C library functions. It aims to reinforce a deep understanding of low-level programming and memory manipulation in C.
+This project is involves recreating essential C library functions. It aims to reinforce a deep understanding of low-level programming and memory manipulation in C.
 
 ## Table of Contents
 
