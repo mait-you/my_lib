@@ -6,7 +6,7 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 17:48:40 by mait-you          #+#    #+#             */
-/*   Updated: 2024/11/08 18:17:42 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/04/19 10:20:20 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ t_list	*ft_lstnew(void *content)
 {
 	t_list	*new_list;
 
-	new_list = (t_list *)ft_calloc(1, sizeof(t_list));
+	new_list = (t_list *)ft_safe_calloc(
+		(size_t){1, sizeof(t_list)}, ALLOCATE, NULL);
 	if (!new_list)
 		return (NULL);
 	new_list->content = content;

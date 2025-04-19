@@ -6,7 +6,7 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 12:22:05 by mait-you          #+#    #+#             */
-/*   Updated: 2024/11/08 13:50:18 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/04/19 09:50:46 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,19 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdint.h>
+
+#ifndef BUFFER_SIZE
+# define BUFFER_SIZE 100
+#endif
+
+# define MAX_ALLOCATIONS 1024
+
+typedef enum e_keys
+{
+	ALLOCATE,
+	FREE_ALL,
+	FREE_ONE
+}t_keys;
 
 typedef struct s_list
 {
@@ -66,5 +79,7 @@ void	ft_lstdelone(t_list *lst, void (*del)(void*));
 void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+void	*ft_safe_calloc(size_t size[2], t_keys key, void *to_delete);
+char	*get_next_line(int fd);
 
 #endif
