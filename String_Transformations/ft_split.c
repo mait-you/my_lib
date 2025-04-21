@@ -6,7 +6,7 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 08:58:35 by mait-you          #+#    #+#             */
-/*   Updated: 2025/04/19 10:17:52 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/04/21 12:49:46 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ static char	**free_memory(char **ptr, int i)
 
 	j = 0;
 	while (j < i)
-		ft_safe_calloc(0, FREE_ONE, ptr[j++]);
-	ft_safe_calloc(0, FREE_ONE, ptr);
+		ft_safe_allocate(0, FREE_ONE, ptr[j++]);
+	ft_safe_allocate(0, FREE_ONE, ptr);
 	return (NULL);
 }
 
@@ -76,8 +76,8 @@ char	**ft_split(char const *s, char c)
 
 	if (!s)
 		return (NULL);
-	ptr =(char **)ft_safe_calloc(
-		(size_t){count_words(s, c) + 1, sizeof(char *)}, ALLOCATE, NULL);
+	ptr =(char **)ft_safe_allocate(
+		(size_t[2]){count_words(s, c) + 1, sizeof(char *)}, ALLOCATE, NULL);
 	if (!ptr)
 		return (NULL);
 	return (x(s, c, ptr));

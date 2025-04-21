@@ -6,7 +6,7 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 12:48:48 by mait-you          #+#    #+#             */
-/*   Updated: 2025/04/19 10:06:11 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/04/21 12:50:21 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		substr_len = (s_len - start) + 1;
 	else
 		substr_len = len + 1;
-	substr = (char *)ft_safe_calloc((size_t){substr_len, sizeof(char)}, ALLOCATE, NULL);
+	substr = (char *)ft_safe_allocate(
+		(size_t[2]){substr_len, sizeof(char)}, ALLOCATE, NULL);
 	if (!substr)
 		return (NULL);
 	ft_strlcpy(substr, s + start, substr_len);

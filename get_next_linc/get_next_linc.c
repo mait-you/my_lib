@@ -6,7 +6,7 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 09:24:59 by mait-you          #+#    #+#             */
-/*   Updated: 2025/04/19 10:33:38 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/04/21 12:48:49 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,13 @@ char	*get_clean_line(char **backup_line)
 	has_nl = ((*backup_line)[l] == '\n');
 	line = ft_substr(*backup_line, 0, l + has_nl);
 	if (!line)
-		return (ft_safe_calloc(0, FREE_ONE, *backup_line));
+		return (ft_safe_allocate(0, FREE_ONE, *backup_line));
 	new_backup_line = ft_strjoin(NULL, *backup_line + l + has_nl);
 	if (!new_backup_line)
 		return (
-			ft_safe_calloc(0, FREE_ONE, line),
-			ft_safe_calloc(0, FREE_ONE, *backup_line));
-	ft_safe_calloc(0, FREE_ONE, *backup_line);
+			ft_safe_allocate(0, FREE_ONE, line),
+			ft_safe_allocate(0, FREE_ONE, *backup_line));
+	ft_safe_allocate(0, FREE_ONE, *backup_line);
 	*backup_line = new_backup_line;
 	return (line);
 }
@@ -57,16 +57,16 @@ char	*get_line(int fd, char *backup_line, char *buffer)
 	{
 		bytes = read(fd, buffer, BUFFER_SIZE);
 		if (bytes == -1)
-			return (ft_safe_calloc(0, FREE_ONE, backup_line));
+			return (ft_safe_allocate(0, FREE_ONE, backup_line));
 		if (bytes == 0)
 		{
 			if (backup_line && !*backup_line)
-				return (ft_safe_calloc(0, FREE_ONE, backup_line));
+				return (ft_safe_allocate(0, FREE_ONE, backup_line));
 			return (backup_line);
 		}
 		buffer[bytes] = 0;
 		tmp = ft_strjoin(backup_line, buffer);
-		ft_safe_calloc(0, FREE_ONE, backup_line);
+		ft_safe_allocate(0, FREE_ONE, backup_line);
 		if (!tmp)
 			return (NULL);
 		backup_line = tmp;

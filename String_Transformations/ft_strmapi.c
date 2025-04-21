@@ -6,7 +6,7 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 08:38:31 by mait-you          #+#    #+#             */
-/*   Updated: 2025/04/19 09:57:56 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/04/21 12:49:58 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 
 	if (!s || !f)
 		return (NULL);
-	ptr = (char *)ft_safe_calloc((size_t){ft_strlen(s) + 1, sizeof(char)}, ALLOCATE, NULL);
+	ptr = (char *)ft_safe_allocate(
+		(size_t[2]){ft_strlen(s) + 1, sizeof(char)}, ALLOCATE, NULL);
 	if (!ptr)
 		return (NULL);
 	i = 0;

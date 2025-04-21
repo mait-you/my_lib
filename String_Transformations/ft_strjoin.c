@@ -6,7 +6,7 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 15:19:57 by mait-you          #+#    #+#             */
-/*   Updated: 2025/04/19 10:15:35 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/04/21 12:49:49 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		s2_len = 0;
 	else
 		s2_len = ft_strlen(s2);
-	ptr = (char *)ft_safe_calloc(
-		(size_t){s1_len + s2_len + 1, sizeof(char)}, ALLOCATE, NULL);
+	ptr = (char *)ft_safe_allocate(
+		(size_t[2]){s1_len + s2_len + 1, sizeof(char)}, ALLOCATE, NULL);
 	if (!ptr)
 		return (NULL);
 	ft_memcpy(ptr, s1, s1_len);

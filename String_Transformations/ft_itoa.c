@@ -6,7 +6,7 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 18:17:14 by mait-you          #+#    #+#             */
-/*   Updated: 2025/04/19 10:18:27 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/04/21 13:22:58 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ char	*ft_itoa(int n)
 
 	nb = n;
 	len = n_len(nb);
-	str = (char *)ft_safe_calloc(
-		(size_t){len + 1, sizeof(char)}, ALLOCATE, NULL);
+	str = (char *)ft_safe_allocate(
+		(size_t[2]){len + 1, sizeof(char)}, ALLOCATE, NULL);
 	if (!str)
 		return (NULL);
 	if (nb < 0)
