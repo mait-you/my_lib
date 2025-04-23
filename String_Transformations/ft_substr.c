@@ -6,7 +6,7 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 12:48:48 by mait-you          #+#    #+#             */
-/*   Updated: 2025/04/21 12:50:21 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/04/23 12:01:00 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*substr;
 	size_t	s_len;
-	size_t	substr_len;
+	size_t	copy_len;
 
 	if (!s)
 		return (NULL);
@@ -24,13 +24,14 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	if (start > s_len)
 		return (ft_strdup(""));
 	if (len > (s_len - start))
-		substr_len = (s_len - start) + 1;
+		copy_len = s_len - start;
 	else
-		substr_len = len + 1;
+		copy_len = len;
 	substr = (char *)ft_safe_allocate(
-		(size_t[2]){substr_len, sizeof(char)}, ALLOCATE, NULL);
+		(size_t[2]){copy_len + 1, sizeof(char)}, ALLOCATE, NULL);
 	if (!substr)
 		return (NULL);
-	ft_strlcpy(substr, s + start, substr_len);
+	ft_memcpy(substr, s + start, copy_len);
+	substr[copy_len] = '\0';
 	return (substr);
 }

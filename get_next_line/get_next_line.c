@@ -1,16 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_linc.c                                    :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 09:24:59 by mait-you          #+#    #+#             */
-/*   Updated: 2025/04/21 12:48:49 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/04/23 12:06:28 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
+
+int		ft_strlen_gln(char *str);
+char	*ft_strjoin_gln(char *s1, char *s2);
 
 int	is_there_any_newline(char *backup_line)
 {
