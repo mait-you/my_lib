@@ -6,11 +6,11 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 12:48:48 by mait-you          #+#    #+#             */
-/*   Updated: 2025/04/23 12:01:00 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/04/29 09:44:29 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../include/libft.h"
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
@@ -28,7 +28,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	else
 		copy_len = len;
 	substr = (char *)ft_safe_allocate(
-		(size_t[2]){copy_len + 1, sizeof(char)}, ALLOCATE, NULL);
+		(size_t[2]){copy_len + 1, sizeof(char)}, ALLOCATE, NULL, NULL);
 	if (!substr)
 		return (NULL);
 	ft_memcpy(substr, s + start, copy_len);

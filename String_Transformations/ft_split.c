@@ -6,11 +6,11 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 08:58:35 by mait-you          #+#    #+#             */
-/*   Updated: 2025/04/21 12:49:46 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/04/29 09:44:08 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../include/libft.h"
 
 static int	count_words(char const *s, char c)
 {
@@ -33,17 +33,6 @@ static int	count_words(char const *s, char c)
 	return (count);
 }
 
-static char	**free_memory(char **ptr, int i)
-{
-	int	j;
-
-	j = 0;
-	while (j < i)
-		ft_safe_allocate(0, FREE_ONE, ptr[j++]);
-	ft_safe_allocate(0, FREE_ONE, ptr);
-	return (NULL);
-}
-
 static char	**x(char const *s, char c, char	**ptr)
 {
 	int	len;
@@ -61,7 +50,7 @@ static char	**x(char const *s, char c, char	**ptr)
 				len++;
 			ptr[i] = ft_substr(s, 0, len);
 			if (!ptr[i])
-				return (free_memory(ptr, i));
+				return (ft_safe_allocate(0, FREE_ONE, NULL, ptr));
 			i++;
 			s += len;
 		}
@@ -77,7 +66,8 @@ char	**ft_split(char const *s, char c)
 	if (!s)
 		return (NULL);
 	ptr =(char **)ft_safe_allocate(
-		(size_t[2]){count_words(s, c) + 1, sizeof(char *)}, ALLOCATE, NULL);
+		(size_t[2]){count_words(s, c) + 1, sizeof(char *)},
+		ALLOCATE, NULL, NULL);
 	if (!ptr)
 		return (NULL);
 	return (x(s, c, ptr));

@@ -6,11 +6,11 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 17:18:51 by mait-you          #+#    #+#             */
-/*   Updated: 2025/04/23 12:01:12 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/04/29 09:32:04 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../include/libft.h"
 
 void	ft_bzero(void *s, size_t n)
 {

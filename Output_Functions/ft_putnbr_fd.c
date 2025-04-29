@@ -6,11 +6,11 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 11:52:01 by mait-you          #+#    #+#             */
-/*   Updated: 2024/11/08 19:28:15 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/04/29 09:32:41 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../include/libft.h"
 
 void	ft_putnbr_fd(int n, int fd)
 {

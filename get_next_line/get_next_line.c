@@ -6,27 +6,13 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 09:24:59 by mait-you          #+#    #+#             */
-/*   Updated: 2025/04/23 12:06:28 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/04/29 09:41:55 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../include/get_next_line.h"
 
-int		ft_strlen_gln(char *str);
-char	*ft_strjoin_gln(char *s1, char *s2);
-
-int	is_there_any_newline(char *backup_line)
-{
-	while (backup_line && *backup_line)
-	{
-		if (*backup_line == '\n')
-			return (1);
-		backup_line++;
-	}
-	return (0);
-}
-
-char	*get_clean_line(char **backup_line)
+static char	*get_clean_line(char **backup_line)
 {
 	char	*line;
 	char	*new_backup_line;
@@ -39,18 +25,18 @@ char	*get_clean_line(char **backup_line)
 	has_nl = ((*backup_line)[l] == '\n');
 	line = ft_substr(*backup_line, 0, l + has_nl);
 	if (!line)
-		return (ft_safe_allocate(0, FREE_ONE, *backup_line));
+		return (ft_safe_allocate(0, FREE_ONE, *backup_line, NULL));
 	new_backup_line = ft_strjoin(NULL, *backup_line + l + has_nl);
 	if (!new_backup_line)
 		return (
-			ft_safe_allocate(0, FREE_ONE, line),
-			ft_safe_allocate(0, FREE_ONE, *backup_line));
-	ft_safe_allocate(0, FREE_ONE, *backup_line);
+			ft_safe_allocate(0, FREE_ONE, line, NULL),
+			ft_safe_allocate(0, FREE_ONE, *backup_line, NULL));
+	ft_safe_allocate(0, FREE_ONE, *backup_line, NULL);
 	*backup_line = new_backup_line;
 	return (line);
 }
 
-char	*get_line(int fd, char *backup_line, char *buffer)
+static char	*get_line(int fd, char *backup_line, char *buffer)
 {
 	ssize_t	bytes;
 	char	*tmp;
@@ -60,16 +46,16 @@ char	*get_line(int fd, char *backup_line, char *buffer)
 	{
 		bytes = read(fd, buffer, BUFFER_SIZE);
 		if (bytes == -1)
-			return (ft_safe_allocate(0, FREE_ONE, backup_line));
+			return (ft_safe_allocate(0, FREE_ONE, backup_line, NULL));
 		if (bytes == 0)
 		{
 			if (backup_line && !*backup_line)
-				return (ft_safe_allocate(0, FREE_ONE, backup_line));
+				return (ft_safe_allocate(0, FREE_ONE, backup_line, NULL));
 			return (backup_line);
 		}
 		buffer[bytes] = 0;
 		tmp = ft_strjoin(backup_line, buffer);
-		ft_safe_allocate(0, FREE_ONE, backup_line);
+		ft_safe_allocate(0, FREE_ONE, backup_line, NULL);
 		if (!tmp)
 			return (NULL);
 		backup_line = tmp;

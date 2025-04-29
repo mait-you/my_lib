@@ -6,7 +6,7 @@
 #    By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/08 11:26:17 by mait-you          #+#    #+#              #
-#    Updated: 2025/04/23 12:07:03 by mait-you         ###   ########.fr        #
+#    Updated: 2025/04/29 09:45:12 by mait-you         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ _PRINTF                 = ft_printf/
 # Source files by category
 SAFE_CALLOC             = $(_SAFE_CALLOC)ft_safe_allocate.c \
 	$(_SAFE_CALLOC)ft_safe_allocate_action.c $(_SAFE_CALLOC)ft_safe_allocate_utils.c \
-	$(_SAFE_CALLOC)memory_fencing.c
+	$(_SAFE_CALLOC)memory_fencing.c $(_SAFE_CALLOC)ft_safe_allocate_cleanup.c
 
 STR_MANIPULATION        = $(_STR_M)ft_strlen.c $(_STR_M)ft_strlcpy.c $(_STR_M)ft_strlcat.c \
 	$(_STR_M)ft_strchr.c $(_STR_M)ft_strrchr.c $(_STR_M)ft_strncmp.c $(_STR_M)ft_strnstr.c \

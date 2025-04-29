@@ -6,11 +6,11 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 21:38:46 by mait-you          #+#    #+#             */
-/*   Updated: 2025/04/23 11:54:08 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/04/29 09:42:32 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../include/libft.h"
 
 char	*ft_strdup(const char *s1)
 {
@@ -18,7 +18,8 @@ char	*ft_strdup(const char *s1)
 	size_t	s1_len;
 
 	s1_len = ft_strlen(s1);
-	str = (char *)ft_safe_allocate((size_t[2]){s1_len, sizeof(char)}, ALLOCATE, NULL);
+	str = (char *)ft_safe_allocate(
+		(size_t[2]){s1_len, sizeof(char)}, ALLOCATE, NULL, NULL);
 	if (!str)
 		return (NULL);
 	ft_memcpy(str, s1, s1_len + 1);

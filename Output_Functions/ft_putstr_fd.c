@@ -6,11 +6,11 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 11:46:27 by mait-you          #+#    #+#             */
-/*   Updated: 2024/11/08 19:30:04 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/04/29 09:32:44 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../include/libft.h"
 
 void	ft_putstr_fd(char *s, int fd)
 {

@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/21 16:25:38 by mait-you          #+#    #+#             */
-/*   Updated: 2025/04/29 09:32:20 by mait-you         ###   ########.fr       */
+/*   Created: 2024/11/16 08:13:03 by mait-you          #+#    #+#             */
+/*   Updated: 2025/04/29 09:41:13 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libft.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-void	*ft_memset(void *b, int c, size_t len)
-{
-	unsigned char	*ptr;
+# include <stdlib.h>
+# include <unistd.h>
+# include <limits.h>
+# include "ft_safe_allocate.h"
 
-	ptr = (unsigned char *)b;
-	while (len-- > 0)
-		*(ptr++) = (unsigned char)c;
-	return (b);
-}
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
+
+char	*get_next_line(int fd);
+char	*ft_strjoin_gln(char *s1, char *s2);
+int 	ft_strlen_gln(char *str);
+int		is_there_any_newline(char *backup_line);
+
+#endif

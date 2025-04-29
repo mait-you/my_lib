@@ -6,11 +6,11 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 17:34:00 by mait-you          #+#    #+#             */
-/*   Updated: 2024/10/31 11:01:09 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/04/29 09:32:15 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../include/libft.h"
 
 void	*ft_memcpy(void *dst, const void *src, size_t n)
 {

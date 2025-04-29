@@ -6,11 +6,11 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 09:24:59 by mait-you          #+#    #+#             */
-/*   Updated: 2025/04/23 12:06:11 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/04/29 09:38:53 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../include/get_next_line.h"
 
 int ft_strlen_gln(char *str)
 {
@@ -35,4 +35,15 @@ char *ft_strjoin_gln(char *s1, char *s2)
         *ptr++ = *s2++;
     *ptr = 0;
     return (r);
+}
+
+int	is_there_any_newline(char *backup_line)
+{
+	while (backup_line && *backup_line)
+	{
+		if (*backup_line == '\n')
+			return (1);
+		backup_line++;
+	}
+	return (0);
 }

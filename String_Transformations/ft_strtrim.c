@@ -6,11 +6,11 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 18:03:48 by mait-you          #+#    #+#             */
-/*   Updated: 2024/11/01 11:12:53 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/04/29 09:33:26 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../include/libft.h"
 
 static int	trim(char const *s1, char const *set)
 {

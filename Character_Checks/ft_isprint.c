@@ -6,11 +6,11 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 15:50:24 by mait-you          #+#    #+#             */
-/*   Updated: 2024/10/25 09:29:30 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/04/29 09:34:02 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../include/libft.h"
 
 int	ft_isprint(int c)
 {

@@ -6,24 +6,14 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 18:46:19 by mait-you          #+#    #+#             */
-/*   Updated: 2025/04/21 13:23:24 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/04/29 09:30:44 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../include/ft_safe_allocate.h"
 
-/**
- * @brief Reallocates memory for a given pointer by allocating new memory,
- *        copying the old data, and freeing the old pointer.
- * 
- * @param size An array of two size_t values representing the number of elements
- *             and size of each element.
- * @param ptr_array The tracking array holding allocated memory blocks.
- * @param ptr The pointer to be reallocated.
- * 
- * @return void* A new memory pointer on success, NULL on failure.
- */
-void	*realloc_ptr(size_t size[2], t_allocation *ptr_array, void *ptr)
+void	*realloc_ptr(
+	size_t *size, t_allocation *ptr_array, void *ptr, t_action action)
 {
 	void	*new_ptr;
 
@@ -33,19 +23,14 @@ void	*realloc_ptr(size_t size[2], t_allocation *ptr_array, void *ptr)
 	if (ptr)
 	{
 		ft_memcpy(new_ptr, ptr, size[0] * size[1]);
-		free_specific(ptr_array, ptr);
+		if (action == REALLOC)
+			free_specific(ptr_array, ptr, NULL, 0);
+		else if (action == ADD_TO_TRACK)
+			free(ptr);
 	}
 	return (new_ptr);
 }
 
-/**
- * @brief Returns the number of active (non-NULL) allocations in the tracking
- *        array.
- * 
- * @param ptr_array The tracking array holding allocated memory blocks.
- * 
- * @return int The number of active allocations.
- */
 int	get_allocation_count(t_allocation *ptr_array)
 {
 	int	count;
@@ -60,68 +45,50 @@ int	get_allocation_count(t_allocation *ptr_array)
 		i++;
 	}
 	if (count > HASH_TABLE_SIZE * 0.9)
-		ft_putendl_fd(WARN_NEAR_ALLOC_LIMIT, STDOUT_FILENO);
+		ft_putstr_fd(WARN_NEAR_ALLOC_LIMIT, STDOUT_FILENO);
 	return (count);
 }
 
-/**
- * @brief Frees a specific pointer from the tracking array. If the pointer is
- *        not found in the array, it frees it directly.
- * 
- * @param ptr_array The tracking array holding allocated memory blocks.
- * @param ptr The pointer to be freed.
- * 
- * @return void* Always returns NULL.
- */
-void	*free_specific(t_allocation *ptr_array, const void *ptr)
+void	*free_specific(
+	t_allocation *ptr_array, const void *ptr, void **double_ptr, size_t *size)
 {
-	int		i;
-	size_t	hash;
+	int	count;
 
-	if (!ptr)
-		return (ft_putendl_fd(WARN_FREE_NULL_PTR, STDERR_FILENO), NULL);
-	if (MEMORY_FENCING)
-		return (free_specific_memory_fencing(ptr_array, ptr));
-	i = 0;
-	hash = hash_ptr(ptr);
-	while (i < HASH_TABLE_SIZE)
+	count = 0;
+	if (!ptr && !double_ptr)
+		return (ft_putstr_fd(WARN_FREE_NULL_PTR, STDERR_FILENO), NULL);
+	if (ptr && double_ptr)
+		return (ft_putstr_fd(WARN_BOTH_PTR, STDERR_FILENO), NULL);
+	if (ptr)
 	{
-		if (ptr_array[hash].user_ptr == ptr)
-		{
-			free(ptr_array[hash].user_ptr);
-			ft_memset(&ptr_array[hash], 0, sizeof(t_allocation));
-			return (NULL);
-		}
-		if (ptr_array[hash].user_ptr == NULL)
-			break ;
-		hash = (hash + 1) % HASH_TABLE_SIZE;
-		i++;
+		if (MEMORY_FENCING)
+			return (free_one_memfen(ptr_array, ptr));
+		else if (!MEMORY_FENCING)
+			return (free_one(ptr_array, ptr));
 	}
-	free((void *)ptr);
-	ft_putendl_fd(WARN_PTR_NOT_ALLOCATED, STDERR_FILENO);
+	if (size)
+		count = *size;
+	if (double_ptr)
+		return (free_list(ptr_array, double_ptr, count));
 	return (NULL);
 }
 
-/**
- * @brief Frees all memory blocks stored in the tracking array and resets each
- *        slot.
- * 
- * @param ptr_array The tracking array holding allocated memory blocks.
- * 
- * @return void* Always returns NULL.
- */
 void	*free_all(t_allocation *ptr_array)
 {
 	int	i;
 
-	if (MEMORY_FENCING)
-		return (free_all_memory_fencing(ptr_array));
 	i = 0;
 	while (i < HASH_TABLE_SIZE)
 	{
 		if (ptr_array[i].user_ptr)
 		{
-			free(ptr_array[i].user_ptr);
+			if (MEMORY_FENCING)
+			{
+				check_memfen(ptr_array[i].user_ptr, ptr_array[i].size);
+				free(ptr_array[i].original_ptr);
+			}
+			else
+				free(ptr_array[i].user_ptr);
 			ft_memset(&ptr_array[i], 0, sizeof(t_allocation));
 		}
 		i++;
@@ -129,33 +96,27 @@ void	*free_all(t_allocation *ptr_array)
 	return (NULL);
 }
 
-/**
- * @brief Allocates memory using ft_calloc and adds it to the tracking array.
- *        If allocation fails or tracking fails, all memory is freed.
- * 
- * @param size An array of two size_t values representing the number of elements
- *             and size of each element.
- * @param ptr_array The tracking array to store the allocation information.
- * 
- * @return void* The allocated memory pointer on success, NULL on failure.
- */
-void	*allocate_ptr(size_t size[2], t_allocation *ptr_array)
+void	*allocate_ptr(size_t *size, t_allocation *ptr_array)
 {
 	void	*user_ptr;
+	void	*original_ptr;
 
 	if (MEMORY_FENCING)
-		return (allocate_ptr_memory_fencing(size, ptr_array));
-	user_ptr = ft_calloc(size[0], size[1]);
-	if (!user_ptr)
 	{
-		free_all(ptr_array);
-		return (NULL);
+		original_ptr = ft_calloc(1, (size[0] * size[1]) + (GUARD_SIZE * 2));
+		if (!original_ptr)
+			return (free_all(ptr_array));
+		user_ptr = setup_memfen(original_ptr, size[0] * size[1]);
+		if (add_to_tracking(ptr_array, original_ptr, user_ptr, size) == ERROR)
+			return (free(original_ptr), free_all(ptr_array));
 	}
-	if (add_to_tracking(ptr_array, NULL, user_ptr, size) == ERROR)
+	else if (!MEMORY_FENCING)
 	{
-		free(user_ptr);
-		free_all(ptr_array);
-		return (NULL);
+		user_ptr = ft_calloc(size[0], size[1]);
+		if (!user_ptr)
+			return (free_all(ptr_array));
+		if (add_to_tracking(ptr_array, NULL, user_ptr, size) == ERROR)
+			return (free(user_ptr), free_all(ptr_array));
 	}
 	return (user_ptr);
 }
