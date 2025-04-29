@@ -6,7 +6,7 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 08:58:35 by mait-you          #+#    #+#             */
-/*   Updated: 2025/04/29 09:44:08 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/04/29 09:52:21 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static char	**x(char const *s, char c, char	**ptr)
 				len++;
 			ptr[i] = ft_substr(s, 0, len);
 			if (!ptr[i])
-				return (ft_safe_allocate(0, FREE_ONE, NULL, ptr));
+				return (ft_safe_allocate(0, FREE_ONE, NULL, (void **)ptr));
 			i++;
 			s += len;
 		}
