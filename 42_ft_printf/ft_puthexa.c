@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_puthexa.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/21 19:32:05 by mait-you          #+#    #+#             */
-/*   Updated: 2025/04/29 10:38:01 by mait-you         ###   ########.fr       */
+/*   Created: 2024/11/19 18:09:42 by mait-you          #+#    #+#             */
+/*   Updated: 2025/04/29 09:30:32 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libft.h"
+#include "../include/ft_printf.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+int	ft_puthexa(unsigned int nb, char c)
 {
-	char	*ptr;
+	int		re_value;
+	char	*base_l;
+	char	*base_u;
 
-	if (!src && !dst)
-		return (NULL);
-	ptr = (char *)dst;
-	if (src > dst)
-		ft_memcpy(dst, src, len);
-	else
-	{
-		while (len--)
-			*(ptr + len) = *(const char *)(src + len);
-	}
-	return (dst);
+	re_value = 0;
+	base_l = "0123456789abcdef";
+	base_u = "0123456789ABCDEF";
+	if (nb >= 16)
+		re_value += ft_puthexa(nb / 16, c);
+	if (c == 'x')
+		re_value += ft_putchr(base_l[nb % 16]);
+	else if (c == 'X')
+		re_value += ft_putchr(base_u[nb % 16]);
+	return (re_value);
 }

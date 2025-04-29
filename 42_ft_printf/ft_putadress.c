@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_putadress.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/21 19:32:05 by mait-you          #+#    #+#             */
-/*   Updated: 2025/04/29 10:38:01 by mait-you         ###   ########.fr       */
+/*   Created: 2024/11/19 17:54:51 by mait-you          #+#    #+#             */
+/*   Updated: 2025/04/29 09:30:28 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libft.h"
+#include "../include/ft_printf.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+int	ft_putadress(unsigned long nb)
 {
-	char	*ptr;
+	int		re_value;
+	char	*base;
 
-	if (!src && !dst)
-		return (NULL);
-	ptr = (char *)dst;
-	if (src > dst)
-		ft_memcpy(dst, src, len);
-	else
-	{
-		while (len--)
-			*(ptr + len) = *(const char *)(src + len);
-	}
-	return (dst);
+	re_value = 0;
+	base = "0123456789abcdef";
+	if (nb >= 16)
+		re_value += ft_putadress(nb / 16);
+	re_value += ft_putchr(base[nb % 16]);
+	return (re_value);
 }

@@ -6,7 +6,7 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 21:38:46 by mait-you          #+#    #+#             */
-/*   Updated: 2025/04/29 09:42:32 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/04/29 10:38:19 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ char	*ft_strdup(const char *s1)
 
 	s1_len = ft_strlen(s1);
 	str = (char *)ft_safe_allocate(
-		(size_t[2]){s1_len, sizeof(char)}, ALLOCATE, NULL, NULL);
+			(size_t[2]){s1_len, sizeof(char)},
+			ALLOCATE, NULL, NULL);
 	if (!str)
 		return (NULL);
 	ft_memcpy(str, s1, s1_len + 1);

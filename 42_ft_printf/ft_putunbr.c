@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_putunbr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/21 19:32:05 by mait-you          #+#    #+#             */
-/*   Updated: 2025/04/29 10:38:01 by mait-you         ###   ########.fr       */
+/*   Created: 2024/11/19 17:23:51 by mait-you          #+#    #+#             */
+/*   Updated: 2025/04/29 09:30:39 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libft.h"
+#include "../include/ft_printf.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+int	ft_putunbr(unsigned int nb)
 {
-	char	*ptr;
+	int	re_value;
 
-	if (!src && !dst)
-		return (NULL);
-	ptr = (char *)dst;
-	if (src > dst)
-		ft_memcpy(dst, src, len);
-	else
+	re_value = 0;
+	if (nb >= 10)
 	{
-		while (len--)
-			*(ptr + len) = *(const char *)(src + len);
+		re_value += ft_putunbr(nb / 10);
+		re_value += ft_putunbr(nb % 10);
 	}
-	return (dst);
+	else
+		re_value += ft_putchr(nb + '0');
+	return (re_value);
 }
