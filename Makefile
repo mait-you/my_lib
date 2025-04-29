@@ -6,13 +6,13 @@
 #    By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 09:51:24 by mait-you          #+#    #+#              #
-#    Updated: 2025/04/29 10:25:33 by mait-you         ###   ########.fr        #
+#    Updated: 2025/04/29 13:24:08 by mait-you         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Compiler and flags
 CC          = cc
-CFLAGS      = -Wall -Wextra -Werror
+CFLAGS      = -Wall -Wextra -Werror -fsanitize=address -g
 AR          = ar rcs
 NAME        = libft.a
 
@@ -167,8 +167,7 @@ clean:
 
 # Clean everything
 fclean: clean
-	@rm -f $(NAME) str_manipulation.a str_transformations.a mem_management.a char_checks.a \
-	output_functions.a linked_list.a safe_alloc.a gnl.a printf.a
+	@rm -f $(NAME) 
 	@echo "$(RED)Cleaned all libraries.$(RESET)"
 
 # Rebuild everything

@@ -6,7 +6,7 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 18:46:19 by mait-you          #+#    #+#             */
-/*   Updated: 2025/04/29 09:30:46 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/04/29 13:34:39 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	add_to_tracking(
 		hash = (hash + 1) % HASH_TABLE_SIZE;
 		i++;
 	}
-	ft_putstr_fd(ERR_ALLOC_TRACK_LIMIT, STDERR_FILENO);
+	ft_putstr_fd_sa(ERR_ALLOC_TRACK_LIMIT, STDERR_FILENO);
 	return (ERROR);
 }
 
@@ -52,14 +52,15 @@ void	*free_one_memfen(t_allocation *ptr_array, const void *ptr)
 		{
 			check_memfen(ptr_array[hash].user_ptr, ptr_array[hash].size);
 			free(ptr_array[hash].original_ptr);
-			return (ft_memset(&ptr_array[hash], 0, sizeof(t_allocation)), NULL);
+			return (ft_memset_sa(
+				&ptr_array[hash], 0, sizeof(t_allocation)), NULL);
 		}
 		if (ptr_array[hash].original_ptr == NULL)
 			break ;
 		hash = (hash + 1) % HASH_TABLE_SIZE;
 		i++;
 	}
-	ft_putstr_fd(WARN_PTR_NOT_ALLOCATED, STDERR_FILENO);
+	ft_putstr_fd_sa(WARN_PTR_NOT_ALLOCATED, STDERR_FILENO);
 	return (NULL);
 }
 
@@ -75,7 +76,7 @@ void	*free_one(t_allocation *ptr_array, const void *ptr)
 		if (ptr_array[hash].user_ptr == ptr)
 		{
 			free(ptr_array[hash].user_ptr);
-			ft_memset(&ptr_array[hash], 0, sizeof(t_allocation));
+			ft_memset_sa(&ptr_array[hash], 0, sizeof(t_allocation));
 			return (NULL);
 		}
 		if (ptr_array[hash].user_ptr == NULL)
@@ -83,7 +84,7 @@ void	*free_one(t_allocation *ptr_array, const void *ptr)
 		hash = (hash + 1) % HASH_TABLE_SIZE;
 		i++;
 	}
-	ft_putstr_fd(WARN_PTR_NOT_ALLOCATED, STDERR_FILENO);
+	ft_putstr_fd_sa(WARN_PTR_NOT_ALLOCATED, STDERR_FILENO);
 	return (NULL);
 }
 

@@ -6,13 +6,13 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 16:25:38 by mait-you          #+#    #+#             */
-/*   Updated: 2025/04/29 09:30:48 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/04/29 13:34:21 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_safe_allocate.h"
 
-void	*ft_memset(void *b, int c, size_t len)
+void	*ft_memset_sa(void *b, int c, size_t len)
 {
 	unsigned char	*ptr;
 
@@ -22,7 +22,7 @@ void	*ft_memset(void *b, int c, size_t len)
 	return (b);
 }
 
-void	*ft_calloc(size_t count, size_t size)
+void	*ft_calloc_sa(size_t count, size_t size)
 {
 	void	*ptr;
 
@@ -31,11 +31,11 @@ void	*ft_calloc(size_t count, size_t size)
 	ptr = malloc(count * size);
 	if (!ptr)
 		return (NULL);
-	ft_memset(ptr, 0, count * size);
+	ft_memset_sa(ptr, 0, count * size);
 	return (ptr);
 }
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+void	*ft_memcpy_sa(void *dst, const void *src, size_t n)
 {
 	size_t			i;
 	char			*ptr;
@@ -52,7 +52,7 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	return (dst);
 }
 
-void	ft_putstr_fd(char *s, int fd)
+void	ft_putstr_fd_sa(char *s, int fd)
 {
 	if (!s || fd == -1)
 		return ;
@@ -60,7 +60,7 @@ void	ft_putstr_fd(char *s, int fd)
 		write(fd, s++, 1);
 }
 
-void	ft_puthex_fd(unsigned long n, int fd)
+void	ft_puthex_fd_sa(unsigned long n, int fd)
 {
 	char	*b;
 
@@ -68,6 +68,6 @@ void	ft_puthex_fd(unsigned long n, int fd)
 	if (fd == -1)
 		return ;
 	if (n >= 16)
-		ft_puthex_fd(n / 16, fd);
+		ft_puthex_fd_sa(n / 16, fd);
 	write(fd, &b[n % 16], 1);
 }

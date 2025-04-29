@@ -6,7 +6,7 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 18:46:19 by mait-you          #+#    #+#             */
-/*   Updated: 2025/04/29 09:30:44 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/04/29 13:33:00 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	*realloc_ptr(
 		return (NULL);
 	if (ptr)
 	{
-		ft_memcpy(new_ptr, ptr, size[0] * size[1]);
+		ft_memcpy_sa(new_ptr, ptr, size[0] * size[1]);
 		if (action == REALLOC)
 			free_specific(ptr_array, ptr, NULL, 0);
 		else if (action == ADD_TO_TRACK)
@@ -45,7 +45,7 @@ int	get_allocation_count(t_allocation *ptr_array)
 		i++;
 	}
 	if (count > HASH_TABLE_SIZE * 0.9)
-		ft_putstr_fd(WARN_NEAR_ALLOC_LIMIT, STDOUT_FILENO);
+		ft_putstr_fd_sa(WARN_NEAR_ALLOC_LIMIT, STDOUT_FILENO);
 	return (count);
 }
 
@@ -56,9 +56,9 @@ void	*free_specific(
 
 	count = 0;
 	if (!ptr && !double_ptr)
-		return (ft_putstr_fd(WARN_FREE_NULL_PTR, STDERR_FILENO), NULL);
+		return (ft_putstr_fd_sa(WARN_FREE_NULL_PTR, STDERR_FILENO), NULL);
 	if (ptr && double_ptr)
-		return (ft_putstr_fd(WARN_BOTH_PTR, STDERR_FILENO), NULL);
+		return (ft_putstr_fd_sa(WARN_BOTH_PTR, STDERR_FILENO), NULL);
 	if (ptr)
 	{
 		if (MEMORY_FENCING)
@@ -89,7 +89,7 @@ void	*free_all(t_allocation *ptr_array)
 			}
 			else
 				free(ptr_array[i].user_ptr);
-			ft_memset(&ptr_array[i], 0, sizeof(t_allocation));
+			ft_memset_sa(&ptr_array[i], 0, sizeof(t_allocation));
 		}
 		i++;
 	}
@@ -103,7 +103,7 @@ void	*allocate_ptr(size_t *size, t_allocation *ptr_array)
 
 	if (MEMORY_FENCING)
 	{
-		original_ptr = ft_calloc(1, (size[0] * size[1]) + (GUARD_SIZE * 2));
+		original_ptr = ft_calloc_sa(1, (size[0] * size[1]) + (GUARD_SIZE * 2));
 		if (!original_ptr)
 			return (free_all(ptr_array));
 		user_ptr = setup_memfen(original_ptr, size[0] * size[1]);
@@ -112,7 +112,7 @@ void	*allocate_ptr(size_t *size, t_allocation *ptr_array)
 	}
 	else if (!MEMORY_FENCING)
 	{
-		user_ptr = ft_calloc(size[0], size[1]);
+		user_ptr = ft_calloc_sa(size[0], size[1]);
 		if (!user_ptr)
 			return (free_all(ptr_array));
 		if (add_to_tracking(ptr_array, NULL, user_ptr, size) == ERROR)
