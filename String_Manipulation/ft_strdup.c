@@ -19,7 +19,7 @@ char	*ft_strdup(const char *s1)
 
 	s1_len = ft_strlen(s1);
 	str = (char *)ft_safe_allocate(
-			(size_t[2]){s1_len, sizeof(char)},
+			(size_t[2]){s1_len + 1, sizeof(char)},
 			ALLOCATE, NULL, NULL);
 	if (!str)
 		return (NULL);
